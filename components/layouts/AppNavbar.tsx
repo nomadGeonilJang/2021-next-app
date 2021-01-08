@@ -1,8 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
+const routes = ['about', 'news', 'platform', 'career'];
+
 function AppNavbar() {
+  const router = useRouter();
+
   return (
     <NavBar>
       <NavTitle>
@@ -11,26 +16,13 @@ function AppNavbar() {
         </Link>
       </NavTitle>
       <NavList>
-        <NavItem>
-          <Link href="/about">
-            <a>about</a>
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link href="/news">
-            <a>news</a>
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link href="/platform">
-            <a>platform</a>
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link href="/career">
-            <a>career</a>
-          </Link>
-        </NavItem>
+        {routes.map((route) => (
+          <NavItem key={route}>
+            <Link href={`/${route}`}>
+              <a className={`${router.pathname.includes(route) && 'active'}`}>{route}</a>
+            </Link>
+          </NavItem>
+        ))}
       </NavList>
     </NavBar>
   );
@@ -52,16 +44,22 @@ const NavTitle = styled.header`
 `;
 const NavList = styled.ul`
   display:flex;
+  justify-content:space-around;
 `;
 const NavItem = styled.li`
   margin:0 5px;
   cursor: pointer;
   a{
-    display:block;
-    padding:20px;
+    display:flex;
+    padding:25px;
+    color:#ccc;
+    font-weight:bold;
   }
-  :hover{
-    opacity:0.8;
+  a.active{
+    color:white;
+  }
+  a:hover{
+    color:white;
   }
 `;
 
