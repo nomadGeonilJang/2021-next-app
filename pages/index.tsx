@@ -11,7 +11,18 @@ export default function Home() {
   const sectionRefs = useRef([]);
 
   useEffect(() => {
-    console.log(sectionRefs);
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, {
+      threshold: 0.7,
+    });
+    sectionRefs.current.forEach((ref) => observer.observe(ref));
   }, []);
 
   return (

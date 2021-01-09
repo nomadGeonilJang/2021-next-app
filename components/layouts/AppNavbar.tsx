@@ -34,6 +34,7 @@ const NavBar = styled.nav`
   left:0;
   width:100%;
   height:80px;
+  z-index:100;
   background-color:black;
   color:white;
   display:flex;
