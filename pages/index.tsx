@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import styled from 'styled-components';
+
+import Fifth from 'components/home/fifth';
+import First from 'components/home/first';
+import Forth from 'components/home/forth';
+import Second from 'components/home/second';
+import Third from 'components/home/third';
 
 export default function Home() {
-  return (
-    <> <h1>ss</h1>
+  const sectionRefs = useRef([]);
 
-    </>
+  useEffect(() => {
+    console.log(sectionRefs);
+  }, []);
+
+  return (
+    <Container>
+      <First ref={sectionRefs} />
+      <Second ref={sectionRefs} />
+      <Third ref={sectionRefs} />
+      <Forth ref={sectionRefs} />
+      <Fifth ref={sectionRefs} />
+    </Container>
   );
 }
+
+const Container = styled.article``;
